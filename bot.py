@@ -1,12 +1,9 @@
-import os
 import re
-from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, MessageHandler, ContextTypes, CommandHandler, filters
 from pathlib import Path
 import json
 
-load_dotenv()
 
 REPLY_TEXT = (
     "Скачать можно по ссылке - ragerussia.online\n"
@@ -19,7 +16,7 @@ REPLY_PC = (
     "Тема с гайдом на форуме - https://forum.ragerussia.online/threads/368/post-6799"
 )
 
-ADMIN_USER_ID = int(os.getenv("ADMIN_USER_ID", "0"))
+ADMIN_USER_ID = 6293484470
 TRIGGERS_FILE = Path(__file__).with_name("triggers.json")
 
 # Компилируем паттерны для быстрых проверок (регистронезависимо)
@@ -321,12 +318,7 @@ async def cmd_remove(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 
 
 def main() -> None:
-    token = os.environ.get("TELEGRAM_BOT_TOKEN")
-    if not token:
-        raise RuntimeError(
-            "Не задана переменная окружения TELEGRAM_BOT_TOKEN. "
-            "Установите токен бота перед запуском."
-        )
+    token = "7738883966:AAF2kZulAtdEyQd2lgz9GoGsRjtoVVeS6QE"
 
     _load_triggers()
     app = Application.builder().token(token).build()
